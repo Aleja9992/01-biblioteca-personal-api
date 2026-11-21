@@ -1,0 +1,49 @@
+
+# Dependencias
+node_modules/
+
+# Next.js
+.next/
+out/
+build/
+dist/
+
+# Variables de entorno y secretos
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+serviceAccount*.json
+*credentials*.json
+secrets/
+
+# Firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# Vercel
+.vercel/
+
+# Pruebas y cobertura
+coverage/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos temporales
+*.tmp
+*.bak
+*.tsbuildinfo
+
+.vercel
