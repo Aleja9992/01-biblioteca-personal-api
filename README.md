@@ -122,3 +122,10 @@ La paginación no es una instantánea entre páginas. El cursor conserva UID, `s
 ```bash
 npm test
 ```
+
+## Documentacion interactiva
+
+La especificacion OpenAPI 3.1 esta disponible en `/api/openapi.json`. La interfaz
+Swagger UI se sirve en `/api/docs`. Ambas rutas son publicas, pero no exponen
+credenciales ni secretos; las operaciones privadas continuan requiriendo un ID
+token Bearer.
