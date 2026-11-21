@@ -84,20 +84,37 @@ npm run dev
 ```
 
 `GET http://localhost:3000/api/health` debe responder `{"status":"ok"}`. Para
-producción, importa este repositorio en Vercel con su raíz de proyecto en la
-carpeta de la API, configura las mismas variables en **Project Settings →
-Environment Variables** (incluida la clave privada solo en Vercel) y despliega:
+producción, el proyecto de Vercel `biblioteca-personal-api` está vinculado a
+este repositorio y su dominio es
+[`https://biblioteca-personal-api.vercel.app`](https://biblioteca-personal-api.vercel.app).
+La raíz del proyecto debe ser la carpeta de esta API. Configura las variables
+requeridas en **Project Settings → Environment Variables** (incluida la clave
+privada solo en Vercel):
+
+- `FIREBASE_PROJECT_ID`, `FIREBASE_CLIENT_EMAIL`, `FIREBASE_PRIVATE_KEY` y
+  `FIREBASE_WEB_API_KEY` para Firebase.
+- `API_CURSOR_SECRET` con al menos 32 bytes aleatorios para paginar libros.
+- `BLOB_READ_WRITE_TOKEN` solo para habilitar subidas de portadas con Vercel
+  Blob.
+
+Vercel despliega automáticamente los cambios enviados a la rama configurada
+para producción. También puedes iniciar un despliegue manual:
 
 ```bash
 npx vercel --prod
 ```
 
-Al terminar, comprueba `https://<dominio-de-la-api>/api/health`. La app Expo ya
-apunta a `https://01-biblioteca-personal-api.vercel.app`; actualiza
-`EXPO_PUBLIC_API_URL` y el perfil EAS de producción si el dominio desplegado
-cambia. Las variables `VITE_FIREBASE_*` no se usan en esta API ni deben copiarse
-a la app móvil: únicamente `VITE_FIREBASE_PROJECT_ID` y `VITE_FIREBASE_API_KEY`
-se mapean a `FIREBASE_PROJECT_ID` y `FIREBASE_WEB_API_KEY` del servidor.
+Comprueba el estado en
+[`/api/health`](https://biblioteca-personal-api.vercel.app/api/health) y la
+documentación interactiva en
+[`/api/docs`](https://biblioteca-personal-api.vercel.app/api/docs). La
+especificación OpenAPI está en
+[`/api/openapi.json`](https://biblioteca-personal-api.vercel.app/api/openapi.json).
+Si cambia el dominio de producción, actualiza `EXPO_PUBLIC_API_URL` y el perfil
+EAS de producción de la app móvil. Las variables `VITE_FIREBASE_*` no se usan
+en esta API ni deben copiarse a la app móvil: únicamente
+`VITE_FIREBASE_PROJECT_ID` y `VITE_FIREBASE_API_KEY` se mapean a
+`FIREBASE_PROJECT_ID` y `FIREBASE_WEB_API_KEY` del servidor.
 
 ## Libros y préstamos
 
@@ -123,9 +140,9 @@ La paginación no es una instantánea entre páginas. El cursor conserva UID, `s
 npm test
 ```
 
-## Documentacion interactiva
+## Documentación interactiva
 
-La especificacion OpenAPI 3.1 esta disponible en `/api/openapi.json`. La interfaz
-Swagger UI se sirve en `/api/docs`. Ambas rutas son publicas, pero no exponen
-credenciales ni secretos; las operaciones privadas continuan requiriendo un ID
+La especificación OpenAPI 3.1 está disponible en `/api/openapi.json`. La interfaz
+Swagger UI se sirve en `/api/docs`. Ambas rutas son públicas, pero no exponen
+credenciales ni secretos; las operaciones privadas continúan requiriendo un ID
 token Bearer.
